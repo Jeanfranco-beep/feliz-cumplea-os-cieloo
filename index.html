@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños Cielo!</title>
+    <style>
+        body {
+            background-color: #0d1b2a;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Fondo de Estrellas y Luna */
+        .moon {
+            position: absolute;
+            top: 50px;
+            right: 60px;
+            width: 80px;
+            height: 80px;
+            background: #f4f1de;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(244, 241, 222, 0.5);
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 0.8s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Textos */
+        h1 {
+            font-size: 2.5rem;
+            color: #f72585;
+            text-shadow: 0 0 10px rgba(247, 37, 133, 0.6);
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .name-cielo {
+            font-size: 4.5rem;
+            font-weight: bold;
+            color: #4cc9f0;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0 0 10px 0;
+            text-shadow: 0 0 20px rgba(76, 201, 240, 0.8), 0 0 40px rgba(76, 201, 240, 0.4);
+            animation: pulse 1s infinite alternate;
+        }
+
+        .wishes {
+            font-size: 1.2rem;
+            color: #e0aaff;
+            text-align: center;
+            max-width: 80%;
+            margin-top: 40px;
+            line-height: 1.5;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        /* Contenedor General del Pastel */
+        .cake-container {
+            position: relative;
+            width: 250px;
+            height: 160px; /* Ajustado para contener todo en su lugar */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        /* Base / Plato del pastel */
+        .plate {
+            width: 260px;
+            height: 20px;
+            background: #e2eafc;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -5px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 -5px 5px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        /* Cuerpo Cilíndrico del Pastel */
+        .cake-body {
+            width: 200px;
+            height: 110px;
+            background: linear-gradient(to right, #b7094c 0%, #a01a58 20%, #f72585 50%, #a01a58 80%, #b7094c 100%);
+            border-radius: 0 0 100px 100px / 0 0 30px 30px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Tapa Superior de la Torta */
+        .cake-top {
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 200px;
+            height: 40px;
+            background: #ff70a6;
+            border-radius: 50%;
+            box-shadow: inset 0 2px 5px rgba(255,255,255,0.5);
+        }
+
+        /* Glaseado Chorreando (Drips) */
+        .drips {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            height: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .drip {
+            width: 12px;
+            height: 18px;
+            background: #ff70a6;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 1px 3px 4px rgba(0,0,0,0.15);
+        }
+        .drip:nth-child(2n) { height: 26px; width: 14px; }
+        .drip:nth-child(3n) { height: 14px; width: 10px; }
+
+        /* Velas Colocadas Exactamente ARRIBA del Pastel */
+        .candles-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100px;
+            position: absolute;
+            top: -15px; /* Bajadas para que se claven en la tapa rosa */
+            z-index: 4; /* Por encima de la tapa */
+        }
+
+        .candle {
+            width: 10px;
+            height: 50px;
+            background: linear-gradient(to right, #4cc9f0, #4361ee, #4cc9f0);
+            position: relative;
+            border-radius: 4px 4px 0 0;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .candle:nth-child(2) {
+            background: linear-gradient(to right, #ffb703, #fb8500, #ffb703);
+            transform: translateY(-5px);
+        }
+
+        /* Llama Animada Rápida */
+        .flame {
+            width: 12px;
+            height: 22px;
+            background: #ffb703;
+            border-radius: 50% 50% 20% 20%;
+            position: absolute;
+            top: -24px;
+            left: -1px;
+            box-shadow: 0 0 12px #ffb703, 0 0 25px #fb8500, 0 0 40px rgba(255,183,3,0.6);
+            animation: flicker 0.25s infinite alternate;
+            transform-origin: bottom center;
+        }
+
+        @keyframes flicker {
+            0% { transform: scaleX(0.85) rotate(-3deg); background: #ffb703; }
+            100% { transform: scaleX(1.15) rotate(4deg); background: #ff4d00; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="moon"></div>
+    <div class="stars" id="starfield"></div>
+
+    <h1>¡Feliz Cumpleaños!</h1>
+    <div class="name-cielo">CIELO</div>
+
+    <!-- Estructura del Pastel con Posiciones Corregidas -->
+    <div class="cake-container">
+        <div class="candles-container">
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+            <div class="candle"><div class="flame"></div></div>
+        </div>
+        <div class="cake-body">
+            <div class="cake-top"></div>
+            <div class="drips">
+                <div class="drip"></div><div class="drip"></div><div class="drip"></div>
+                <div class="drip"></div><div class="drip"></div><div class="drip"></div>
+                <div class="drip"></div><div class="drip"></div><div class="drip"></div>
+            </div>
+        </div>
+        <div class="plate"></div>
+    </div>
+
+    <div class="wishes">
+        ¡Que la pases super bonito hoy y siempre, y que se cumplan cada una de tus metas! 🌟✨
+    </div>
+
+    <script>
+        const starfield = document.getElementById('starfield');
+        const starCount = 60;
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.animationDelay = `${Math.random() * 0.5}s`;
+            star.style.animationDuration = `${Math.random() * 0.4 + 0.4}s`;
+            starfield.appendChild(star);
+        }
+    </script>
+</body>
+</html>
